@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 20:10:48 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:04:28 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ private:
 
 	RAMInfo(RAMInfo const &copy);
 	RAMInfo const &operator=(RAMInfo const &rhs);
-
-	int64_t _ram_max;
-	int64_t _ram_used;
-	int64_t _ram_free;
 };
 
 #endif
