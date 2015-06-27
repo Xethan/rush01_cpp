@@ -1,51 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Whatever.hpp                                       :+:      :+:    :+:   */
+/*   HostUserNames.Class.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:03:45 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 13:43:02 by ncolliau         ###   ########.fr       */
+/*   Created: 2015/06/27 14:28:48 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/06/27 17:27:35 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef HOSTUSERNAMES_HPP
+# define HOSTUSERNAMES_HPP
 
+# include <unistd.h>
 # include <limits.h>
-# include <unistd.h> // getlogin / hostname
-# include <iostream>
-# include <sstream>
-# include <iomanip>
-# include <ctime>
-# include <stdexcept>
 
-# include "Ncurses.Class.hpp"
-# include "ModuleOS.Class.hpp"
+# include "IMonitorModule.Class.hpp"
 
-class Whatever
+class HostUserNames : public IMonitorModule
 {
 
-public :
+public:
 
-	Whatever(std::string display_mode = "ncurses");
-	~Whatever(void);
-	void display_all(void) const; // appeler classe QT / Ncurses
+	HostUserNames(void);
+	~HostUserNames(void);
 	std::string getHostname(void) const;
 	std::string getUsername(void) const;
 
 private:
 
-	Whatever(Whatever const &copy);
-	Whatever const &operator=(Whatever const &rhs);
+	HostUserNames(HostUserNames const &copy);
+	HostUserNames const &operator=(HostUserNames const &rhs);
 
-	std::string _display_mode;
 	std::string _hostname;
 	std::string _username;
-	IMonitorModule *_os_info;
-	Ncurses _ncurses;
-	//Class QT;
 };
 
 #endif

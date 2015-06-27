@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.hpp                                 :+:      :+:    :+:   */
+/*   OSInfo.Class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:49:20 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 13:53:41 by ncolliau         ###   ########.fr       */
+/*   Created: 2015/06/27 12:38:23 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/06/27 17:27:13 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_HPP
-# define IMONITORMODULE_HPP
+#ifndef OSINFO_HPP
+# define OSINFO_HPP
 
-# include <ncurses.h>
+# include <sys/utsname.h>
 
-class IMonitorModule
+# include "IMonitorModule.Class.hpp"
+
+class OSInfo : public IMonitorModule
 {
 
 public:
 
-	virtual ~IMonitorModule(void) {};
-	virtual void display(void) const = 0;
+	OSInfo(void);
+	~OSInfo(void);
+	struct utsname getOSInfo(void) const;
 
+private:
+
+	OSInfo(OSInfo const &copy);
+	OSInfo const &operator=(OSInfo const &rhs);
+
+	struct utsname _os_info;
 };
 
 #endif

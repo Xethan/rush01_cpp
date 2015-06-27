@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ModuleOS.Class.hpp                                 :+:      :+:    :+:   */
+/*   IMonitorDisplay.Class.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:38:23 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 13:23:29 by ncolliau         ###   ########.fr       */
+/*   Created: 2015/06/27 12:49:25 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/06/27 17:29:13 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MODULEOS_HPP
-# define MODULEOS_HPP
+#ifndef IMONITORDISPLAY_HPP
+# define IMONITORDISPLAY_HPP
 
-# include <iostream>
-# include <stdexcept>
-# include <sys/utsname.h>
+# include <ncurses.h>
 
-# include "IMonitorModule.hpp"
+# include "IMonitorModule.Class.hpp"
 
-class ModuleOS : public IMonitorModule
+class IMonitorDisplay
 {
 
 public:
 
-	ModuleOS(void);
-	//ModuleOS(ModuleOS const &copy);
-	~ModuleOS(void);
-	//ModuleOS const &operator=(ModuleOs cosnt &rhs);
-	void display(void) const;
+	virtual ~IMonitorDisplay(void) {};
+	//virtual void displayData(IMonitorModule *data) const = 0;
 
-private:
-
-	struct utsname _os_info;
 };
 
 #endif

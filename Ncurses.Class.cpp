@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 13:42:31 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 17:25:08 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,5 @@ Ncurses::Ncurses(void)
 
 Ncurses::~Ncurses(void)
 {
-	return;
-}
-
-void Ncurses::displayData(IMonitorModule *data) const
-{
-	data->display();
-	//mvprintw(0, 0, "Hostname: %s", modules.getHostname().c_str());
-	//mvprintw(1, 0, "Username: %s", modules.getUsername().c_str());
-	return;
-}
-
-void Ncurses::end_display(void) const
-{
-	endwin();
 	return;
 }

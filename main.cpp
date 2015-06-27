@@ -1,76 +1,46 @@
-#include <limits.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/06/27 17:24:35 by ncolliau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <sys/utsname.h>
+#include "Monitor.Class.hpp"
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <ctime>
+#include "CPUInfo.Class.hpp"
 
-std::string		getHostName(void)
+int main(void)
 {
-	char name[_POSIX_HOST_NAME_MAX + 1];
-	if (gethostname(name, _POSIX_HOST_NAME_MAX) == -1)
-		return "gethostname error";
+	try
+	{
+		Monitor monitor;
+		int key;
 
-	std::string ret = name;
-	return ret;
-}
+		monitor.display_all();
+		while ( ( key = getch() ) != 27 )
+			monitor.display_all();
+		endwin();
 
-std::string		getUserName(void)
-{
-	char * name;
-	if (!(name = getlogin()))
-		return "getlogin error";
+    	int mib[2];
+		int64_t physical_memory;
+		mib[0] = CTL_HW;
+		mib[1] = HW_MEMSIZE;
+		size_t length = sizeof(int64_t);
+		sysctl(mib, 2, &physical_memory, &length, NULL, 0);
 
-	std::string ret = name;
-	return ret;
-}
-
-std::string		getOSInfo(void)
-{
-	struct utsname buf;
-	if (uname(&buf) == -1)
-		return "uname error";
-
-	std::stringstream ss;
-	ss << "system name: " << buf.sysname << std::endl \
-		<< "node name: " << buf.nodename << std::endl \
-		<< "system release: " << buf.release << std::endl \
-		<< "system version: " << buf.version << std::endl \
-		<< "hardware identifier: " << buf.machine;
-	std::string ret = ss.str();
-	return ret;
-}
-
-std::string		getDate(void)
-{
-	std::time_t t = std::time(0);
-	std::stringstream ss;
-	ss << std::put_time(std::localtime(&t), "%d/%m/%y");
-	std::string ret = ss.str();
-	return ret;
-}
-//		http://en.cppreference.com/w/cpp/io/manip/put_time
-std::string		getTime(void)
-{
-	std::time_t t = std::time(0);
-	std::stringstream ss;
-	ss << std::put_time(std::localtime(&t), "%T");
-	std::string ret = ss.str();
-	return ret;
-}
-
-int				main(void)
-{
-	std::cout << "hostname: " << getHostName() << std::endl;
-	std::cout << "username: " << getUserName() << std::endl << std::endl;
-
-	std::cout << "-- OS info --" << std::endl << getOSInfo() << std::endl << std::endl;
-
-	std::cout << "date: " << getDate() << std::endl;
-	std::cout << "time: " << getTime() << std::endl << std::endl;
-
+    	std::cout << physical_memory << std::endl;
+	}
+	catch(std::exception const &e)
+	{
+		std::cout << e.what() << std::endl;
+		endwin();
+	}
 	return (0);
 }
