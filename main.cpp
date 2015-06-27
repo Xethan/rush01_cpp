@@ -6,15 +6,11 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 18:50:10 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/27 20:17:21 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Monitor.Class.hpp"
-#include <sys/types.h>
-#include <sys/sysctl.h>
-
-#include "CPUInfo.Class.hpp"
 
 int main(void)
 {
@@ -27,15 +23,6 @@ int main(void)
 		while ( ( key = getch() ) != 27 )
 			monitor.display();
 		endwin();
-
-    	int mib[2];
-		int64_t physical_memory;
-		mib[0] = CTL_HW;
-		mib[1] = HW_MEMSIZE;
-		size_t length = sizeof(int64_t);
-		sysctl(mib, 2, &physical_memory, &length, NULL, 0);
-
-    	std::cout << physical_memory << std::endl;
 	}
 	catch(std::exception const &e)
 	{

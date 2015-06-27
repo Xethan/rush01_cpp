@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:03:45 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 19:38:01 by mgouault         ###   ########.fr       */
+/*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
+/*   Updated: 2015/06/27 20:18:23 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 # include <iostream>
 # include <stdexcept>
 
-class Ncurses;
+# include "Ncurses.Class.hpp"
+
 class HostUserNames;
 class OSInfo;
 class Time;
 class CPUInfo;
+class RAMInfo;
 
 class Monitor
 {
 private:
-
 						Monitor(Monitor const &copy);
 	Monitor const &		operator=(Monitor const &rhs);
 
@@ -37,9 +38,9 @@ private:
 	OSInfo *			_os_info;
 	Time *				_time_info;
 	CPUInfo *			_cpu_info;
+	RAMInfo *			_ram_info;
 
 public:
-
 						Monitor(std::string display_mode = "ncurses");
 						~Monitor(void);
 	void				display(void) const;

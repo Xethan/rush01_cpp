@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/24 19:38:05 by ncolliau          #+#    #+#              #
-#    Updated: 2015/06/27 17:42:42 by ncolliau         ###   ########.fr        #
+#    Updated: 2015/06/27 20:17:55 by mgouault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	CPUInfo.Class.cpp Time.Class.cpp HostUserNames.Class.cpp OSInfo.Class.cpp \
+SRC =	RAMInfo.Class.cpp CPUInfo.Class.cpp Time.Class.cpp \
+		HostUserNames.Class.cpp OSInfo.Class.cpp \
 		Ncurses.Class.cpp Monitor.Class.cpp main.cpp
 
 NAME = ft_gkrellm
@@ -23,7 +24,7 @@ LIB = -lncurses
 
 .PHONY: make, all, $(NAME), clean, fclean, re
 
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(SRC)
 		$(CC) $(FLAGS) -o $(NAME) $(SRC) $(LIB)
