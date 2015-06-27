@@ -6,13 +6,13 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:38:25 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 21:05:10 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 21:34:13 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OSInfo.Class.hpp"
 
-OSInfo::OSInfo(void)
+					OSInfo::OSInfo(void)
 {
 	struct utsname os_info;
 	if ( uname( &os_info ) == -1)
@@ -28,7 +28,7 @@ OSInfo::OSInfo(void)
 	return;
 }
 
-OSInfo::~OSInfo(void)
+					OSInfo::~OSInfo(void)
 {
 	return;
 }

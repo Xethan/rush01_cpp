@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 20:18:01 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 21:07:00 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int main(void)
 		Monitor monitor;
 		int key;
 
-		monitor.display_all();
+		monitor.display();
 		while ( ( key = getch() ) != 27 )
-			monitor.display_all();
+			monitor.display();
 		endwin();
 	}
 	catch(std::exception const &e)

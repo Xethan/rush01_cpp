@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/24 19:38:05 by ncolliau          #+#    #+#              #
-#    Updated: 2015/06/27 18:22:22 by ncolliau         ###   ########.fr        #
+#    Updated: 2015/06/27 20:17:55 by mgouault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB = -lncurses
 
 .PHONY: make, all, $(NAME), clean, fclean, re
 
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(SRC)
 		$(CC) $(FLAGS) -o $(NAME) $(SRC) $(LIB)

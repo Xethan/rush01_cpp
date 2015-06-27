@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:38:23 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 21:05:12 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 21:08:13 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ public:
 
 private:
 
-	OSInfo(OSInfo const &copy);
-	OSInfo const &operator=(OSInfo const &rhs);
-
+						OSInfo(OSInfo const &copy);
+	OSInfo const &		operator=(OSInfo const &rhs);
 	std::string _sysname;
 	std::string _nodename;
 	std::string _release;

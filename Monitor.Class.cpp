@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 18:23:59 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 20:18:34 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Monitor.Class.hpp"
+#include "HostUserNames.Class.hpp"
+#include "OSInfo.Class.hpp"
+#include "CPUInfo.Class.hpp"
+#include "Time.Class.hpp"
+#include "RAMInfo.Class.hpp"
 
-Monitor::Monitor(std::string display_mode) :
-_display_mode(display_mode),
-_ncurses()
+							Monitor::Monitor(std::string display_mode) : \
+								_display_mode(display_mode), _ncurses(*(new Ncurses))
 {
 	this->_hostusernames = new HostUserNames();
 	this->_os_info = new OSInfo();
@@ -24,7 +28,7 @@ _ncurses()
 	return;
 }
 
-Monitor::~Monitor(void)
+							Monitor::~Monitor(void)
 {
 	delete this->_hostusernames;
 	delete this->_os_info;
@@ -34,14 +38,17 @@ Monitor::~Monitor(void)
 	return;
 }
 
-void Monitor::display_all(void) const
+void						Monitor::display(void) const
 {
 	clear();
-	//this->_ncurses.displayData(this->_hostusernames);
-	//this->_ncurses.displayData(this->_os_info);
+	this->displayNcurses();
 	refresh();
-	// time_t t = std::time(0);
-	// std::cout << "date: " << std::put_time(std::localtime(&t), "%d/%m/%y") << std::endl;
-	// std::cout << "time: " << std::put_time(std::localtime(&t), "%T") << std::endl;
-	return;
+}
+
+void						Monitor::displayNcurses(void) const
+{
+	this->_ncurses.displayModule(this->_hostusernames);
+	this->_ncurses.displayModule(this->_os_info);
+	this->_ncurses.displayModule(this->_cpu_info);
+	this->_ncurses.displayModule(this->_time_info);
 }
