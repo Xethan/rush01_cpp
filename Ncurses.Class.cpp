@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:05:21 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:16:49 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void		Ncurses::displayModule(RAMInfo * module) const
 	this->displayUI("RAMInfo");
 
 	std::stringstream ss;
-	ss << std::setw(20) << std::left << "ramMax: " << module->getRamMax() << std::endl \
-		<< std::setw(20) << std::left << "ramUsed: " << module->getRamUsed() << std::endl \
-		<< std::setw(20) << std::left << "ramFree: " << module->getRamFree() << std::endl \
+	ss << std::setw(20) << std::left << "ramMax: " << module->getRamMax() << " MB" << std::endl \
+		<< std::setw(20) << std::left << "ramUsed: " << module->getRamUsed() << " MB" << std::endl \
+		<< std::setw(20) << std::left << "ramFree: " << module->getRamFree() << " MB" << std::endl \
 		<< std::setw(20) << std::left << "ramPercent: " << module->getRamPercent() << " %%" << std::endl;
 
 	std::string str;

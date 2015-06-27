@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:02:10 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:14:19 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void						Monitor::display(void) const
 	clear();
 	this->displayNcurses();
 	refresh();
-	usleep(25000);
+	sleep(1);
 }
 
 void						Monitor::displayNcurses(void) const
