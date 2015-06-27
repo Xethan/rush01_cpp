@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 20:18:34 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:14:19 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void						Monitor::display(void) const
 	clear();
 	this->displayNcurses();
 	refresh();
+	sleep(1);
 }
 
 void						Monitor::displayNcurses(void) const
@@ -51,4 +52,5 @@ void						Monitor::displayNcurses(void) const
 	this->_ncurses.displayModule(this->_os_info);
 	this->_ncurses.displayModule(this->_cpu_info);
 	this->_ncurses.displayModule(this->_time_info);
+	this->_ncurses.displayModule(this->_ram_info);
 }
