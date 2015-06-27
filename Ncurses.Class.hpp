@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 20:08:12 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:02:46 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,26 @@ class HostUserNames;
 class OSInfo;
 class Time;
 class CPUInfo;
+class RAMInfo;
 
 class Ncurses : public IMonitorDisplay
 {
 private:
-						Ncurses(Ncurses const &copy);
+			Ncurses(Ncurses const &copy);
 	Ncurses const &		operator=(Ncurses const &rhs);
 
 public:
+			Ncurses(void);
+			~Ncurses(void);
 
-						Ncurses(void);
-						~Ncurses(void);
+	void	displayModule(HostUserNames * module) const;
+	void	displayModule(OSInfo * module) const;
+	void	displayModule(Time * module) const;
+	void	displayModule(CPUInfo * module) const;
+	void	displayModule(RAMInfo * module) const;
+	void	displayUI(std::string str) const;
 
-	void				displayModule(HostUserNames * module) const;
-	void				displayModule(OSInfo * module) const;
-	void				displayModule(Time * module) const;
-	void				displayModule(CPUInfo * module) const;
-	void				displayUI(std::string str) const;
-
-	void				print(std::string str) const;
+	void	print(std::string str) const;
 };
 
 #endif
