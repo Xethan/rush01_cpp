@@ -6,15 +6,11 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 20:04:41 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 20:18:01 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Monitor.Class.hpp"
-#include <sys/types.h>
-#include <sys/sysctl.h>
-
-#include "RAMInfo.Class.hpp"
 
 int main(void)
 {

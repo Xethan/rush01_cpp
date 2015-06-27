@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:38:25 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:28:57 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 21:05:10 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 OSInfo::OSInfo(void)
 {
-	if ( uname( &(this->_os_info) ) == -1)
+	struct utsname os_info;
+	if ( uname( &os_info ) == -1)
 		throw std::runtime_error("Error : Could not access OS informations");
+	this->_sysname = os_info.sysname;
+	this->_nodename = os_info.nodename;
+	this->_release = os_info.release;
+	std::stringstream sstream;
+	sstream << os_info.version;
+	this->_version = sstream.str();
+	this->_version = this->_version.substr(0, this->_version.find(":"));
+	this->_machine = os_info.machine;
 	return;
 }
 
@@ -24,15 +33,8 @@ OSInfo::~OSInfo(void)
 	return;
 }
 
-// void OSInfo::displayNcurses(void) const
-// {
-// 	mvprintw(2, 0, "OS info");
-// 	mvprintw(3, 0, "System name: %s", this->_os_info.sysname);
-// 	mvprintw(4, 0, "Node name: %s", this->_os_info.nodename);
-// 	mvprintw(5, 0, "System release: %s", this->_os_info.release);
-// 	mvprintw(6, 0, "System version: %s", this->_os_info.version);
-// 	mvprintw(7, 0, "Hardware identifier: %s", this->_os_info.machine);
-// 	return;
-// }
-
-struct utsname OSInfo::getOSInfo(void) const { return (this->_os_info); }
+std::string OSInfo::getSysname(void) const { return (this->_sysname); }
+std::string OSInfo::getNodename(void) const { return (this->_nodename); }
+std::string OSInfo::getRelease(void) const { return (this->_release); }
+std::string OSInfo::getVersion(void) const { return (this->_version); }
+std::string OSInfo::getMachine(void) const { return (this->_machine); }

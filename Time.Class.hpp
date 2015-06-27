@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 17:33:42 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:47:43 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 21:05:04 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ private:
 
 	Time(Time const &copy);
 	Time const &operator=(Time const &rhs);
-
-	std::string _date;
-	std::string _time;
 };
 
 #endif
