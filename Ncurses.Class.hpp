@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:06:47 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:34:35 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ public:
 
 	void	displayModule(HostUserNames * module) const;
 	void	displayModule(OSInfo * module) const;
-	void	displayModule(Time * module) const;
 	void	displayModule(CPUInfo * module) const;
+	void	displayModule(Time * module) const;
 	void	displayModule(RAMInfo * module) const;
 	void	displayUI(std::string str) const;
 

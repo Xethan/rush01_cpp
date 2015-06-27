@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:16:49 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:39:22 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		Ncurses::displayModule(HostUserNames * module) const
 	this->displayUI("HostUserNames");
 
 	std::stringstream ss;
-	ss << std::setw(20) << std::left << "hostname: " << module->getHostname() << std::endl \
-		<< std::setw(20) << std::left << "username: " << module->getUsername() << std::endl;
+	ss << std::setw(14) << std::left << "Hostname: " << module->getHostname() << std::endl \
+		<< std::setw(14) << std::left << "Username: " << module->getUsername() << std::endl;
 
 	std::string str;
 	str = ss.str();
@@ -49,24 +49,11 @@ void		Ncurses::displayModule(OSInfo * module) const
 	this->displayUI("OSInfo");
 
 	std::stringstream ss;
-	ss << std::setw(20) << std::left << "system name: " << module->getSysname() << std::endl \
-		<< std::setw(20) << std::left << "node name: " << module->getNodename() << std::endl \
-		<< std::setw(20) << std::left << "system release: " << module->getRelease() << std::endl \
-		<< std::setw(20) << std::left << "system version: " << module->getVersion() << std::endl \
-		<< std::setw(20) << std::left << "identifier: " << module->getMachine() << std::endl;
-
-	std::string str;
-	str = ss.str();
-	this->print(str);
-}
-
-void		Ncurses::displayModule(Time * module) const
-{
-	this->displayUI("TimeDate");
-
-	std::stringstream ss;
-	ss << std::setw(20) << std::left << "date: " << module->getDate() << std::endl \
-		<< std::setw(20) << std::left << "time: " << module->getTime() << std::endl;
+	ss << std::setw(14) << std::left << "Sys. name: " << module->getSysname() << std::endl \
+		<< std::setw(14) << std::left << "Node name: " << module->getNodename() << std::endl \
+		<< std::setw(14) << std::left << "Sys. release: " << module->getRelease() << std::endl \
+		<< std::setw(14) << std::left << "Sys. version: " << module->getVersion() << std::endl \
+		<< std::setw(14) << std::left << "Identifier: " << module->getMachine() << std::endl;
 
 	std::string str;
 	str = ss.str();
@@ -78,9 +65,22 @@ void		Ncurses::displayModule(CPUInfo * module) const
 	this->displayUI("CPUInfo");
 
 	std::stringstream ss;
-	ss << std::setw(20) << std::left << "model: " << module->getModel() << std::endl \
-		<< std::setw(20) << std::left << "clockspeed: " << module->getClockSpeed() << std::endl \
-		<< std::setw(20) << std::left << "nbCores: " << module->getNbCores() << std::endl;
+	ss << std::setw(14) << std::left << "Model: " << module->getModel() << std::endl \
+		<< std::setw(14) << std::left << "Clock speed: " << module->getClockSpeed() << std::endl \
+		<< std::setw(14) << std::left << "Nb cores: " << module->getNbCores() << std::endl;
+
+	std::string str;
+	str = ss.str();
+	this->print(str);
+}
+
+void		Ncurses::displayModule(Time * module) const
+{
+	this->displayUI("TimeDate");
+
+	std::stringstream ss;
+	ss << std::setw(14) << std::left << "Date: " << module->getDate() << std::endl \
+		<< std::setw(14) << std::left << "Time: " << module->getTime() << std::endl;
 
 	std::string str;
 	str = ss.str();
@@ -92,10 +92,21 @@ void		Ncurses::displayModule(RAMInfo * module) const
 	this->displayUI("RAMInfo");
 
 	std::stringstream ss;
-	ss << std::setw(20) << std::left << "ramMax: " << module->getRamMax() << " MB" << std::endl \
-		<< std::setw(20) << std::left << "ramUsed: " << module->getRamUsed() << " MB" << std::endl \
-		<< std::setw(20) << std::left << "ramFree: " << module->getRamFree() << " MB" << std::endl \
-		<< std::setw(20) << std::left << "ramPercent: " << module->getRamPercent() << " %%" << std::endl;
+	ss << std::setw(14) << std::left << "Maximum: " << module->getRamMax() << " MB" << std::endl \
+		<< std::setw(14) << std::left << "Used: " << module->getRamUsed() << " MB" << std::endl \
+		<< std::setw(14) << std::left << "Free: " << module->getRamFree() << " MB" << std::endl \
+		<< std::setw(14) << std::left << "Usage: ";
+
+	int p1 = module->getRamPercent() / 10;
+	int p2 = p1;
+	ss << "[";
+	while (p1 > 0)
+	{ ss << "=="; --p1; }
+	ss << ">";
+	while (p2 < 10)
+	{ ss << "  "; ++p2; }
+	ss << "] " << module->getRamPercent() << " %% " \
+		<< "(" << module->getRamUsed() << " / " << module->getRamMax() << ")" <<std::endl;
 
 	std::string str;
 	str = ss.str();
