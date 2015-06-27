@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:42:18 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 18:23:59 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,21 @@ Monitor::Monitor(std::string display_mode) :
 _display_mode(display_mode),
 _ncurses()
 {
-	this->_os_info = new OSInfo();
 	this->_hostusernames = new HostUserNames();
+	this->_os_info = new OSInfo();
 	this->_time_info = new Time();
 	this->_cpu_info = new CPUInfo();
+	this->_ram_info = new RAMInfo();
 	return;
 }
 
 Monitor::~Monitor(void)
 {
-	delete this->_os_info;
 	delete this->_hostusernames;
+	delete this->_os_info;
 	delete this->_time_info;
 	delete this->_cpu_info;
+	delete this->_ram_info;
 	return;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:03:45 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:42:04 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 18:24:13 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include "Ncurses.Class.hpp"
 # include "HostUserNames.Class.hpp"
 # include "OSInfo.Class.hpp"
-# include "CPUInfo.Class.hpp"
 # include "Time.Class.hpp"
+# include "CPUInfo.Class.hpp"
+# include "RAMInfo.Class.hpp"
 
 class Monitor
 {
@@ -41,6 +42,7 @@ private:
 	IMonitorModule *_os_info;
 	IMonitorModule *_time_info;
 	IMonitorModule *_cpu_info;
+	IMonitorModule *_ram_info;
 	Ncurses _ncurses;
 	//Class QT;
 };
