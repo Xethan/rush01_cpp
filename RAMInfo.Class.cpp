@@ -3,34 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   RAMInfo.Class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:57 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:20:40 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:12:43 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RAMInfo.Class.hpp"
 
-#include <iostream>
+			RAMInfo::RAMInfo(void) {}
 
-#include <mach/vm_statistics.h>
-#include <mach/mach_types.h>
-#include <mach/mach_init.h>
-#include <mach/mach_host.h>
+			RAMInfo::~RAMInfo(void) {}
 
-RAMInfo::RAMInfo(void)
-{
-	return;
-}
-
-
-RAMInfo::~RAMInfo(void)
-{
-	return;
-}
-
-int64_t RAMInfo::getRamMax(void) const
+int64_t		RAMInfo::getRamMax(void) const
 {
 	int mib[2];
 	int64_t physical_memory;
@@ -41,7 +27,7 @@ int64_t RAMInfo::getRamMax(void) const
 	return (physical_memory / 1024 / 1024);
 }
 
-int64_t RAMInfo::getRamUsed(void) const
+int64_t 	RAMInfo::getRamUsed(void) const
 {
 	vm_size_t page_size;
 	mach_port_t mach_port;
@@ -60,7 +46,7 @@ int64_t RAMInfo::getRamUsed(void) const
 	return (ram_used / 1024 / 1024);
 }
 
-int64_t RAMInfo::getRamFree(void) const
+int64_t 	RAMInfo::getRamFree(void) const
 {
 	vm_size_t page_size;
     mach_port_t mach_port;
@@ -78,7 +64,5 @@ int64_t RAMInfo::getRamFree(void) const
 	return (ram_free);
 }
 
-int RAMInfo::getRamPercent(void) const
-{
-	return (this->getRamUsed() * 100 / this->getRamMax());
-}
+int			RAMInfo::getRamPercent(void) const
+{ return (this->getRamUsed() * 100 / this->getRamMax()); }

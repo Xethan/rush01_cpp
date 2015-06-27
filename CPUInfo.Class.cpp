@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPUInfo.Class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 16:46:07 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:50:54 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:11:21 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <vector>
 
-CPUInfo::CPUInfo(void)
+			CPUInfo::CPUInfo(void)
 {
 	char buf[100];
 	size_t buflen = 100;
@@ -34,11 +34,13 @@ CPUInfo::CPUInfo(void)
 }
 
 
-CPUInfo::~CPUInfo(void)
-{
-	return;
-}
+			CPUInfo::~CPUInfo(void) {}
 
-std::string CPUInfo::getModel(void) const { return (this->_model); }
-std::string CPUInfo::getClockSpeed(void) const { return (this->_clock_speed); }
-int CPUInfo::getNbCores(void) const { return (this->_nb_cores); }
+std::string CPUInfo::getModel(void) const
+{ return (this->_model); }
+
+std::string CPUInfo::getClockSpeed(void) const
+{ return (this->_clock_speed); }
+
+int			CPUInfo::getNbCores(void) const
+{ return (this->_nb_cores); }

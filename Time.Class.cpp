@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Time.Class.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 17:33:43 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 21:05:27 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:10:22 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 #include <sstream>
 
-Time::Time(void)
-{
-	return;
-}
+			Time::Time(void) {}
 
-Time::~Time(void)
-{
-	return;
-}
+			Time::~Time(void) {}
 
 std::string Time::getDate(void) const
 {

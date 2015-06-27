@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:14:19 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:05:45 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "Time.Class.hpp"
 #include "RAMInfo.Class.hpp"
 
-							Monitor::Monitor(std::string display_mode) : \
+			Monitor::Monitor(std::string display_mode) : \
 								_display_mode(display_mode), _ncurses(*(new Ncurses))
 {
 	this->_hostusernames = new HostUserNames();
@@ -28,7 +28,7 @@
 	return;
 }
 
-							Monitor::~Monitor(void)
+			Monitor::~Monitor(void)
 {
 	delete this->_hostusernames;
 	delete this->_os_info;
@@ -38,7 +38,7 @@
 	return;
 }
 
-void						Monitor::display(void) const
+void		Monitor::display(void) const
 {
 	clear();
 	this->displayNcurses();
@@ -46,7 +46,7 @@ void						Monitor::display(void) const
 	sleep(1);
 }
 
-void						Monitor::displayNcurses(void) const
+void		Monitor::displayNcurses(void) const
 {
 	this->_ncurses.displayModule(this->_hostusernames);
 	this->_ncurses.displayModule(this->_os_info);

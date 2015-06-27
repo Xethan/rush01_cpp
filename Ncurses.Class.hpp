@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:02:46 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:06:47 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Ncurses : public IMonitorDisplay
 {
 private:
 			Ncurses(Ncurses const &copy);
-	Ncurses const &		operator=(Ncurses const &rhs);
+	Ncurses const & operator=(Ncurses const &rhs);
 
 public:
 			Ncurses(void);

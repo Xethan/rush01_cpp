@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   OSInfo.Class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:38:25 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 21:34:13 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 00:12:15 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OSInfo.Class.hpp"
 
-					OSInfo::OSInfo(void)
+			OSInfo::OSInfo(void)
 {
 	struct utsname os_info;
 	if ( uname( &os_info ) == -1)
@@ -28,13 +28,19 @@
 	return;
 }
 
-					OSInfo::~OSInfo(void)
-{
-	return;
-}
+			OSInfo::~OSInfo(void) {}
 
-std::string OSInfo::getSysname(void) const { return (this->_sysname); }
-std::string OSInfo::getNodename(void) const { return (this->_nodename); }
-std::string OSInfo::getRelease(void) const { return (this->_release); }
-std::string OSInfo::getVersion(void) const { return (this->_version); }
-std::string OSInfo::getMachine(void) const { return (this->_machine); }
+std::string OSInfo::getSysname(void) const
+{ return (this->_sysname); }
+
+std::string OSInfo::getNodename(void) const
+{ return (this->_nodename); }
+
+std::string OSInfo::getRelease(void) const
+{ return (this->_release); }
+
+std::string OSInfo::getVersion(void) const
+{ return (this->_version); }
+
+std::string OSInfo::getMachine(void) const
+{ return (this->_machine); }
