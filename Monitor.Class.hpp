@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:03:45 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:25:45 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 17:42:04 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 # define MONITOR_HPP
 
 # include <iostream>
-# include <sstream>
-# include <iomanip>
-# include <ctime>
 # include <stdexcept>
 
 # include "Ncurses.Class.hpp"
 # include "HostUserNames.Class.hpp"
 # include "OSInfo.Class.hpp"
+# include "CPUInfo.Class.hpp"
+# include "Time.Class.hpp"
 
 class Monitor
 {
@@ -40,6 +39,8 @@ private:
 	std::string _display_mode;
 	IMonitorModule *_hostusernames;
 	IMonitorModule *_os_info;
+	IMonitorModule *_time_info;
+	IMonitorModule *_cpu_info;
 	Ncurses _ncurses;
 	//Class QT;
 };
