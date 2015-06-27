@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OSInfo.Class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:38:23 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:27:13 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 18:48:51 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@
 
 class OSInfo : public IMonitorModule
 {
+private:
+	struct utsname		_os_info;
+
+						OSInfo(OSInfo const &copy);
+	OSInfo const &		operator=(OSInfo const &rhs);
 
 public:
-
-	OSInfo(void);
-	~OSInfo(void);
-	struct utsname getOSInfo(void) const;
-
-private:
-
-	OSInfo(OSInfo const &copy);
-	OSInfo const &operator=(OSInfo const &rhs);
-
-	struct utsname _os_info;
+						OSInfo(void);
+						~OSInfo(void);
+	struct utsname		getOSInfo(void) const;
 };
 
 #endif

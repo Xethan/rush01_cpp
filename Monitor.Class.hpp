@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Monitor.Class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:03:45 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:42:04 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 19:38:01 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,34 @@
 # include <iostream>
 # include <stdexcept>
 
-# include "Ncurses.Class.hpp"
-# include "HostUserNames.Class.hpp"
-# include "OSInfo.Class.hpp"
-# include "CPUInfo.Class.hpp"
-# include "Time.Class.hpp"
+class Ncurses;
+class HostUserNames;
+class OSInfo;
+class Time;
+class CPUInfo;
 
 class Monitor
 {
-
-public :
-
-	Monitor(std::string display_mode = "ncurses");
-	~Monitor(void);
-	void display_all(void) const;
-
 private:
 
-	Monitor(Monitor const &copy);
-	Monitor const &operator=(Monitor const &rhs);
+						Monitor(Monitor const &copy);
+	Monitor const &		operator=(Monitor const &rhs);
 
-	std::string _display_mode;
-	IMonitorModule *_hostusernames;
-	IMonitorModule *_os_info;
-	IMonitorModule *_time_info;
-	IMonitorModule *_cpu_info;
-	Ncurses _ncurses;
-	//Class QT;
+	std::string			_display_mode;
+	Ncurses const &		_ncurses;
+	//Qt const &
+
+	HostUserNames *		_hostusernames;
+	OSInfo *			_os_info;
+	Time *				_time_info;
+	CPUInfo *			_cpu_info;
+
+public:
+
+						Monitor(std::string display_mode = "ncurses");
+						~Monitor(void);
+	void				display(void) const;
+	void				displayNcurses(void) const;
 };
 
 #endif

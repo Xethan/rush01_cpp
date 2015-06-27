@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 17:24:35 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 18:50:10 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int main(void)
 		Monitor monitor;
 		int key;
 
-		monitor.display_all();
+		monitor.display();
 		while ( ( key = getch() ) != 27 )
-			monitor.display_all();
+			monitor.display();
 		endwin();
 
     	int mib[2];
