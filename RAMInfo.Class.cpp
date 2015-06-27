@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:57 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 22:09:48 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 22:15:15 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int64_t RAMInfo::getRamUsed(void) const
 		throw std::runtime_error("Error : Couldn't access RAM statistics");
 	ram_used = ram_stats.active_count + ram_stats.inactive_count + ram_stats.wire_count;
 	ram_used *= page_size;
-	return (ram_used / 1024 * 1024);
+	return (ram_used / 1024 / 1024);
 }
 
 int64_t RAMInfo::getRamFree(void) const
@@ -80,5 +80,5 @@ int64_t RAMInfo::getRamFree(void) const
 
 int RAMInfo::getRamPercent(void) const
 {
-	return (this->getRamUsed() / this->getRamMax() * 100);
+	return (this->getRamUsed() * 100 / this->getRamMax());
 }
