@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:57 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 19:58:11 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 20:10:32 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include <mach/mach_types.h>
 #include <mach/mach_init.h>
 #include <mach/mach_host.h>
-
-//      ------------- CAST C++ ---------------
 
 RAMInfo::RAMInfo(void)
 {
@@ -63,3 +61,4 @@ RAMInfo::~RAMInfo(void)
 int64_t RAMInfo::getRamMax(void) const { return (this->_ram_max); }
 int64_t RAMInfo::getRamUsed(void) const { return (this->_ram_used); }
 int64_t RAMInfo::getRamFree(void) const { return (this->_ram_free); }
+int RAMInfo::getRamPercent(void) const { return (this->_ram_used / this->_ram_max * 100); }

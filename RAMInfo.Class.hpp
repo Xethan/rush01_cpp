@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/27 19:43:11 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/27 20:10:48 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 	int64_t getRamMax(void) const;
 	int64_t getRamUsed(void) const;
 	int64_t getRamFree(void) const;
+	int getRamPercent(void) const;
 
 private:
 
