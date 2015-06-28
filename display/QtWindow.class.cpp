@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 20:49:10 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 23:14:48 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 23:39:06 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 QtWindow::QtWindow(void) : QWidget()
 {
 	this->setFixedSize(1000, 1000);
-
-	this->_ncurses_button = new QPushButton("Passer en mode texte", this);
-	this->_ncurses_button->setCursor(Qt::PointingHandCursor);
 	return;
 }
 
@@ -66,11 +63,62 @@ void	QtWindow::displayModule(CPUInfo *module)
 	static_cast<void>(l_nbcores);
 }
 
+void	QtWindow::displayModule(Time *module)
+{
+	QLabel *l_title = this->createLabel("--- Time Info ---", 5, 270);
+	static_cast<void>(l_title);
+	QLabel *l_date = this->createLabel("Date : " + module->getDate(), 5, 290);
+	static_cast<void>(l_date);
+	QLabel *l_time = this->createLabel("Time : " + module->getTime(), 5, 310);
+	static_cast<void>(l_time);
+}
+
 void	QtWindow::displayModule(RAMInfo *module)
 {
+	QLabel *l_title = this->createLabel("--- Ressources ---", this->width() / 2, 0);
+	static_cast<void>(l_title);
+	QLabel *l_max = this->createLabel("Max. RAM : " + std::to_string(module->getRamMax()), this->width() / 2, 20);
+	static_cast<void>(l_max);
+	QLabel *l_used = this->createLabel("Used RAM : " + std::to_string(module->getRamUsed()), this->width() / 2, 40);
+	static_cast<void>(l_used);
+	QLabel *l_free = this->createLabel("Free RAM : " + std::to_string(module->getRamFree()), this->width() / 2, 60);
+	static_cast<void>(l_free);
+	QLabel *l_name = this->createLabel("RAM Percentage : ", this->width() / 2, 80);
+	static_cast<void>(l_name);
 	QProgressBar *ram_usage = new QProgressBar(this);
-	ram_usage->move(this->width() / 2, 50);
+	ram_usage->move(this->width() / 2 + 150, 80);
 	ram_usage->setValue(module->getRamPercent());
+}
+
+void	QtWindow::displayModule(CPUUsage *module)
+{
+	module->getCpuPercent();
+
+	QLabel *l_title = this->createLabel("--- CPU Usage ---", this->width() / 2, 110);
+	static_cast<void>(l_title);
+	for (size_t i = 0; i < module->getCpuP().size(); i++)
+	{
+		QLabel *l_name = this->createLabel("CPU Core " + std::to_string(i + 1) + " : ", this->width() / 2, 140 + i * 30);
+		static_cast<void>(l_name);
+		int percent = static_cast<int>(module->getCpuP()[i]);
+		QProgressBar *ram_usage = new QProgressBar(this);
+		ram_usage->move(this->width() / 2 + 150, 140 + i * 30);
+		ram_usage->setValue(percent);
+	}
+	QLabel *l_name = this->createLabel("CPU Usage : ", this->width() / 2, 290);
+	static_cast<void>(l_name);
+	int percent = static_cast<int>((module->getCpuP()[0] + module->getCpuP()[1] + module->getCpuP()[2] + module->getCpuP()[3]) / 4);
+	QProgressBar *ram_usage = new QProgressBar(this);
+	ram_usage->move(this->width() / 2 + 150, 290);
+	ram_usage->setValue(percent);
+}
+
+void	QtWindow::displayModule(NetworkUsage *module)
+{
+	QLabel *l_title = this->createLabel("--- Network Usage ---", this->width() / 2, 320);
+	static_cast<void>(l_title);
+	QLabel *l_pckt_in = this->createLabel("Packets in : " + module->getNetworkThroughput(NetworkUsage::pktsIn) + " pkts", this->width() / 2, 340);
+	static_cast<void>(l_pckt_in);
 }
 
 QLabel	*QtWindow::createLabel(std::string msg, int x_pos, int y_pos)

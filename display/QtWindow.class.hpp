@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 20:49:09 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 22:57:37 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 23:37:00 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ public:
 	QLabel	*createLabel(std::string msg, int x_pos, int y_pos);
 
 private:
-
-	QPushButton *_ncurses_button;
 
 	QtWindow(QtWindow const &copy);
 	QtWindow const &operator=(QtWindow const &rhs);

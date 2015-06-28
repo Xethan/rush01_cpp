@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 23:15:21 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 23:37:27 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int				QtDisplay::display(Monitor const & src)
 	window.displayModule(src.getHostUserNames());
 	window.displayModule(src.getOSInfo());
 	window.displayModule(src.getCPUInfo());
-	// window.displayModule(src.getTimeInfo());
-	// window.displayModule(src.getRAMInfo());
-	// window.displayModule(src.getCPUUsage());
-	// window.displayModule(src.getNetworkUsage());
+	window.displayModule(src.getTimeInfo());
+	window.displayModule(src.getRAMInfo());
+	window.displayModule(src.getCPUUsage());
+	window.displayModule(src.getNetworkUsage());
 	window.show();
 	return app.exec();
 }
