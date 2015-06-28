@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 20:49:09 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 22:12:15 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 22:57:37 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <QWidget>
 # include <QPushButton>
 # include <QProgressBar>
+# include <QLabel>
 
 class HostUserNames;
 class OSInfo;
@@ -40,12 +41,11 @@ public:
 	void	displayModule(RAMInfo * module);
 	void	displayModule(CPUUsage * module);
 	void	displayModule(NetworkUsage * module);
+	QLabel	*createLabel(std::string msg, int x_pos, int y_pos);
 
 private:
 
 	QPushButton *_ncurses_button;
-	QPushButton *_hostusernames;
-	QProgressBar *_ram_usage;
 
 	QtWindow(QtWindow const &copy);
 	QtWindow const &operator=(QtWindow const &rhs);

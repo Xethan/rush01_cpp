@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 22:10:55 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 23:15:21 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,21 @@
 
 bool			QtDisplay::loop(Monitor const & src)
 {
-	std::cout << this->display(src) << std::endl;
+	this->display(src);
 	return false;
 }
 
 int				QtDisplay::display(Monitor const & src)
 {
-	(void)src;
 	QApplication app(this->_ac, this->_av);
 	QtWindow window;
 	window.displayModule(src.getHostUserNames());
-	window.displayModule(src.getRAMInfo());
+	window.displayModule(src.getOSInfo());
+	window.displayModule(src.getCPUInfo());
+	// window.displayModule(src.getTimeInfo());
+	// window.displayModule(src.getRAMInfo());
+	// window.displayModule(src.getCPUUsage());
+	// window.displayModule(src.getNetworkUsage());
 	window.show();
 	return app.exec();
 }
