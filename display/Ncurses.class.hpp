@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 09:49:50 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 10:24:38 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class OSInfo;
 class Time;
 class CPUInfo;
 class RAMInfo;
+class CPUUsage;
+class NetworkUsage;
 
 class Ncurses : public IMonitorDisplay
 {
@@ -45,7 +47,8 @@ public:
 	void	displayModule(CPUInfo * module);
 	void	displayModule(Time * module);
 	void	displayModule(RAMInfo * module);
-	void	displayModule(void); // NetworkInfo * module
+	void	displayModule(CPUUsage * module);
+	void	displayModule(NetworkUsage * module);
 	void	displayUI(void);
 
 	void	print(std::string str);

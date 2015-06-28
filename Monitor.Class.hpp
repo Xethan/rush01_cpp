@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 09:52:28 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 10:21:31 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class OSInfo;
 class Time;
 class CPUInfo;
 class RAMInfo;
+class CPUUsage;
+class NetworkUsage;
 
 class Monitor
 {
@@ -36,6 +38,9 @@ private:
 	Time *		_time_info;
 	CPUInfo *	_cpu_info;
 	RAMInfo *	_ram_info;
+	CPUUsage *	_cpu_usage;
+	NetworkUsage * _network_usage;
+
 				Monitor(Monitor const &copy);
 	Monitor const & operator=(Monitor const &rhs);
 

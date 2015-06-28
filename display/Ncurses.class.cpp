@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 09:49:46 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 10:32:35 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <HostUserNames.class.hpp>
 #include <OSInfo.class.hpp>
 #include <CPUInfo.class.hpp>
-#include <RAMInfo.class.hpp>
 #include <Time.class.hpp>
+#include <RAMInfo.class.hpp>
+#include <CPUUsage.class.hpp>
+#include <NetworkUsage.class.hpp>
 
 			Ncurses::Ncurses(void)
 {
@@ -111,13 +113,23 @@ void		Ncurses::displayModule(RAMInfo * module)
 	this->print(ss.str());
 }
 
-void		Ncurses::displayModule(void)
+void		Ncurses::displayModule(CPUUsage * module)
 {
-	move(1, this->_w / 2 + 3);
-	this->_y = 1;
-	this->_x = this->_w / 2 + 3;
+	move(this->_h / 2 + 10, this->_w / 4 + 3);
+	this->_y = this->_h / 2 + 10;
+	this->_x = this->_w / 4 + 3;
 
-	this->print("====== Network Info =====");
+	module->getCpuPercent();
+
+	this->print("T1: " + std::to_string(module->getCpuP()[0]));
+	this->print("T2: " + std::to_string(module->getCpuP()[1]));
+	this->print("T3: " + std::to_string(module->getCpuP()[2]));
+	this->print("T4: " + std::to_string(module->getCpuP()[3]));
+}
+
+void		Ncurses::displayModule(NetworkUsage * module)
+{
+	(void)module;
 }
 
 void		Ncurses::displayUI(void)
