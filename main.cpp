@@ -6,23 +6,22 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:39:05 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:12:18 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Monitor.class.hpp>
 
-int main(int ac, char **av)
+int main(void)
 {
 	try
 	{
 		Monitor monitor;
-		monitor.ProgramLoop();
+		monitor.programLoop();
 	}
 	catch (std::exception const & e)
 	{
 		std::cout << e.what() << std::endl;
-		endwin();
 	}
 
 	return (0);

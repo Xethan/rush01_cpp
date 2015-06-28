@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.Class.hpp                                  :+:      :+:    :+:   */
+/*   Monitor.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 17:39:46 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:16:40 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <iostream>
 # include <stdexcept>
 
-# include <Ncurses.class.hpp>
-# include <QtDisplay.class.hpp>
-
 class HostUserNames;
 class OSInfo;
 class Time;
@@ -26,13 +23,14 @@ class CPUInfo;
 class RAMInfo;
 class CPUUsage;
 class NetworkUsage;
+class Ncurses;
+class QtDisplay;
 
 class Monitor
 {
 private:
-	std::string	_display_mode;
-	Ncurses & 	_ncurses;
-	QtDisplay &	_qtdisplay;
+	Ncurses * 	_ncurses;
+	QtDisplay *	_qtdisplay;
 
 	HostUserNames * _hostusernames;
 	OSInfo *	_os_info;
@@ -46,11 +44,22 @@ private:
 	Monitor const & operator=(Monitor const &rhs);
 
 public:
-				Monitor(std::string display_mode);
+				Monitor(void);
 				~Monitor(void);
-	void		ProgramLoop(void);
+
+	void		programLoop(void);
+	void		loopNcurses(void);
+	void		loopQt(void);
 	void		displayNcurses(void);
 	void		displayQt(void);
+
+	HostUserNames *		getHostUserNames(void) const;
+	OSInfo *			getOSInfo(void) const;
+	Time *				getTimeInfo(void) const;
+	CPUInfo *			getCPUInfo(void) const;
+	RAMInfo *			getRAMInfo(void) const;
+	CPUUsage *			getCPUUsage(void) const;
+	NetworkUsage *		getNetworkUsage(void) const;
 };
 
 #endif

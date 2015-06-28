@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:13:54 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:11:31 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class CPUInfo;
 class RAMInfo;
 class CPUUsage;
 class NetworkUsage;
+class Monitor;
 
 class Ncurses : public IMonitorDisplay
 {
@@ -41,6 +42,9 @@ private:
 public:
 			Ncurses(void);
 			~Ncurses(void);
+
+	bool	loop(Monitor const & src);
+	void	display(Monitor const & src);
 
 	void	displayModule(HostUserNames * module);
 	void	displayModule(OSInfo * module);

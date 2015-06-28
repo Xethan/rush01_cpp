@@ -6,11 +6,12 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 17:35:47 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:12:00 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <QtDisplay.class.hpp>
+#include <Monitor.class.hpp>
 
 				QtDisplay::QtDisplay(int ac, char **av) : \
 					_app(*(new QApplication(ac, av))) {}
@@ -22,8 +23,13 @@ QApplication const & QtDisplay::getApp(void) const
 	return this->_app;
 }
 
-void			QtDisplay::displayStuff(void)
+bool			QtDisplay::loop(Monitor const & src)
 {
-	QPushButton bouton("TEST");
-	bouton.show();
+	(void)src;
+	return true;
+}
+
+void			QtDisplay::display(Monitor const & src)
+{
+	(void)src;
 }

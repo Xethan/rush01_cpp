@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
+/*   Monitor.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:39:47 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:25:12 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 #include <CPUUsage.class.hpp>
 #include <NetworkUsage.class.hpp>
 
-				Monitor::Monitor(std::string display_mode, int ac, char **av) : \
-					_display_mode(display_mode), _ncurses(*(new Ncurses)), _qtdisplay(*(new QtDisplay))
+#include <Ncurses.class.hpp>
+#undef scroll
+#include <QtDisplay.class.hpp>
+
+				Monitor::Monitor(void)
 {
 	this->_hostusernames = new HostUserNames();
 	this->_os_info = new OSInfo();
@@ -29,6 +32,8 @@
 	this->_ram_info = new RAMInfo();
 	this->_cpu_usage = new CPUUsage();
 	this->_network_usage = new NetworkUsage();
+	this->_ncurses = new Ncurses();
+	this->_qtdisplay = NULL;
 }
 
 				Monitor::~Monitor(void)
@@ -42,32 +47,51 @@
 	delete this->_network_usage;
 }
 
-void		Monitor::ProgramLoop(void)
+void			Monitor::programLoop(void)
 {
-	int key;
-
-	while ( ( key = getch() ) != 27 )
+	if (!this->_ncurses->loop(*this))
 	{
-		if (key == 10) { this->_ncurses.change_color(); }
-		clear();
-		// this->displayNcurses();
-		// this->displayQt();
-		// mvprintw(48, 1, "%d", key);
-		refresh();
-		usleep(100000);
+		this->qt
 	}
-	endwin();
+	while (true)
+	{
+		if (this->_ncurses)
+		{
+			if (!this->_ncurses->loop(*this))
+				return ;
+			else
+			{
+				this->qt
+			}
+		}
+		else if (this->_ncurses)
+		{
+			if (!this->_qtdisplay->loop(*this))
+				return ;
+		}
+		else
+			return ;
+	}
 }
 
-void			Monitor::displayNcurses(void)
-{
-	if (this->_ncurses.displayUI() == false)
-		return;
-	this->_ncurses.displayModule(this->_hostusernames);
-	this->_ncurses.displayModule(this->_os_info);
-	this->_ncurses.displayModule(this->_cpu_info);
-	this->_ncurses.displayModule(this->_time_info);
-	this->_ncurses.displayModule(this->_ram_info);
-	this->_ncurses.displayModule(this->_cpu_usage);
-	this->_ncurses.displayModule(this->_network_usage);
-}
+HostUserNames *		Monitor::getHostUserNames(void) const
+{ return this->_hostusernames; }
+
+OSInfo *			Monitor::getOSInfo(void) const
+{ return this->_os_info; }
+
+Time *				Monitor::getTimeInfo(void) const
+{ return this->_time_info; }
+
+CPUInfo *			Monitor::getCPUInfo(void) const
+{ return this->_cpu_info; }
+
+RAMInfo *			Monitor::getRAMInfo(void) const
+{ return this->_ram_info; }
+
+CPUUsage *			Monitor::getCPUUsage(void) const
+{ return this->_cpu_usage; }
+
+NetworkUsage *		Monitor::getNetworkUsage(void) const
+{ return this->_network_usage; }
+

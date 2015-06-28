@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 17:35:58 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:11:49 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <QApplication>
 # include <QPushButton>
 
-class QtDisplay
+# include <IMonitorDisplay.class.hpp>
+
+class Monitor;
+
+class QtDisplay : public IMonitorDisplay
 {
 private:
 	QApplication const & _app;
@@ -31,7 +35,8 @@ public:
 
 	QApplication const & getApp(void) const;
 
-	void		displayStuff(void);
+	bool		loop(Monitor const & src);
+	void		display(Monitor const & src);
 };
 
 #endif
