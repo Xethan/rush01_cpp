@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 19:11:31 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 22:09:47 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ private:
 	int		_width;
 	int		_y;
 	int		_color;
+	bool	_display[6];
 
 			Ncurses(Ncurses const &copy);
 	Ncurses const & operator=(Ncurses const &rhs);
