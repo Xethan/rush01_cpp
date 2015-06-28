@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OSInfo.Class.hpp                                   :+:      :+:    :+:   */
+/*   OSInfo.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,7 +16,7 @@
 # include <sys/utsname.h>
 # include <sstream>
 
-# include "IMonitorModule.Class.hpp"
+# include <IMonitorModule.class.hpp>
 
 class OSInfo : public IMonitorModule
 {

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HostUserNames.Class.cpp                            :+:      :+:    :+:   */
+/*   HostUserNames.class.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HostUserNames.Class.hpp"
+#include <HostUserNames.class.hpp>
 
 			HostUserNames::HostUserNames(void)
 {

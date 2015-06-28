@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.Class.hpp                                  :+:      :+:    :+:   */
+/*   Monitor.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 00:06:59 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:52:28 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include <stdexcept>
 
-# include "Ncurses.Class.hpp"
+# include <Ncurses.class.hpp>
 
 class HostUserNames;
 class OSInfo;
@@ -28,7 +28,7 @@ class Monitor
 {
 private:
 	std::string	_display_mode;
-	Ncurses const & _ncurses;
+	Ncurses & 	_ncurses;
 	//Qt const &
 
 	HostUserNames * _hostusernames;
@@ -42,8 +42,8 @@ private:
 public:
 				Monitor(std::string display_mode = "ncurses");
 				~Monitor(void);
-	void		display(void) const;
-	void		displayNcurses(void) const;
+	void		display(void);
+	void		displayNcurses(void);
 };
 
 #endif

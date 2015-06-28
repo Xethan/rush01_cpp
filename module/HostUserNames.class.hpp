@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CPUInfo.Class.hpp                                  :+:      :+:    :+:   */
+/*   HostUserNames.class.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 16:46:08 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:03:08 by mgouault         ###   ########.fr       */
+/*   Created: 2015/06/27 14:28:48 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/06/28 00:04:48 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CPUINFO_HPP
-# define CPUINFO_HPP
+#ifndef HOSTUSERNAMES_HPP
+# define HOSTUSERNAMES_HPP
 
-# include <sys/types.h>
-# include <sys/sysctl.h>
 # include <unistd.h>
+# include <limits.h>
 
-# include "IMonitorModule.Class.hpp"
+# include <IMonitorModule.class.hpp>
 
-class CPUInfo : public IMonitorModule
+class HostUserNames : public IMonitorModule
 {
 private:
-	std::string	_model;
-	std::string	_clock_speed;
-	int			_nb_cores;
+	std::string	_hostname;
+	std::string	_username;
 
-				CPUInfo(CPUInfo const &copy);
-	CPUInfo const & operator=(CPUInfo const &rhs);
+				HostUserNames(HostUserNames const &copy);
+	HostUserNames const & operator=(HostUserNames const &rhs);
 
 public:
-				CPUInfo(void);
-				~CPUInfo(void);
-	std::string	getModel(void) const;
-	std::string	getClockSpeed(void) const;
-	int 		getNbCores(void) const;
+				HostUserNames(void);
+				~HostUserNames(void);
+	std::string	getHostname(void) const;
+	std::string	getUsername(void) const;
 };
 
 #endif

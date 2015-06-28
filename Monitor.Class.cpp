@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
+/*   Monitor.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:05:45 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:53:06 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Monitor.Class.hpp"
-#include "HostUserNames.Class.hpp"
-#include "OSInfo.Class.hpp"
-#include "CPUInfo.Class.hpp"
-#include "Time.Class.hpp"
-#include "RAMInfo.Class.hpp"
+#include <Monitor.class.hpp>
+#include <HostUserNames.class.hpp>
+#include <OSInfo.class.hpp>
+#include <CPUInfo.class.hpp>
+#include <Time.class.hpp>
+#include <RAMInfo.class.hpp>
 
 			Monitor::Monitor(std::string display_mode) : \
 								_display_mode(display_mode), _ncurses(*(new Ncurses))
@@ -25,7 +25,6 @@
 	this->_time_info = new Time();
 	this->_cpu_info = new CPUInfo();
 	this->_ram_info = new RAMInfo();
-	return;
 }
 
 			Monitor::~Monitor(void)
@@ -35,10 +34,9 @@
 	delete this->_time_info;
 	delete this->_cpu_info;
 	delete this->_ram_info;
-	return;
 }
 
-void		Monitor::display(void) const
+void		Monitor::display(void)
 {
 	clear();
 	this->displayNcurses();
@@ -46,11 +44,13 @@ void		Monitor::display(void) const
 	sleep(1);
 }
 
-void		Monitor::displayNcurses(void) const
+void		Monitor::displayNcurses(void)
 {
+	this->_ncurses.displayUI();
 	this->_ncurses.displayModule(this->_hostusernames);
 	this->_ncurses.displayModule(this->_os_info);
 	this->_ncurses.displayModule(this->_cpu_info);
 	this->_ncurses.displayModule(this->_time_info);
 	this->_ncurses.displayModule(this->_ram_info);
+	this->_ncurses.displayModule();
 }

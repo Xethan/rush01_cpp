@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CPUInfo.Class.cpp                                  :+:      :+:    :+:   */
+/*   CPUInfo.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 16:46:07 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:11:21 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:49:58 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CPUInfo.Class.hpp"
+#include <CPUInfo.class.hpp>
 
 #include <vector>
 

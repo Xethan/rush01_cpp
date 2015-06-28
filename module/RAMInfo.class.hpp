@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RAMInfo.Class.hpp                                  :+:      :+:    :+:   */
+/*   RAMInfo.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:09:34 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:55:39 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <mach/mach_init.h>
 # include <mach/mach_host.h>
 
-# include "IMonitorModule.Class.hpp"
+# include <IMonitorModule.class.hpp>
 
 class RAMInfo : public IMonitorModule
 {

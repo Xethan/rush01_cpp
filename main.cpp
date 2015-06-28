@@ -6,11 +6,11 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:05:30 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:48:49 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Monitor.Class.hpp"
+#include <Monitor.class.hpp>
 
 int		main(void)
 {

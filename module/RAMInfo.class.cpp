@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RAMInfo.Class.cpp                                  :+:      :+:    :+:   */
+/*   RAMInfo.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 18:01:57 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 00:12:43 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 09:55:33 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RAMInfo.Class.hpp"
+#include <RAMInfo.class.hpp>
 
 			RAMInfo::RAMInfo(void) {}
 
