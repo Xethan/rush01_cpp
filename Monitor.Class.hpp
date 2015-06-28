@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 10:21:31 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 17:37:42 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdexcept>
 
 # include <Ncurses.class.hpp>
+# include <QtDisplay.class.hpp>
 
 class HostUserNames;
 class OSInfo;
@@ -31,7 +32,7 @@ class Monitor
 private:
 	std::string	_display_mode;
 	Ncurses & 	_ncurses;
-	//Qt const &
+	QtDisplay &	_qtdisplay;
 
 	HostUserNames * _hostusernames;
 	OSInfo *	_os_info;
@@ -45,10 +46,11 @@ private:
 	Monitor const & operator=(Monitor const &rhs);
 
 public:
-				Monitor(std::string display_mode = "ncurses");
+				Monitor(std::string display_mode);
 				~Monitor(void);
 	void		display(void);
 	void		displayNcurses(void);
+	void		displayQt(void);
 };
 
 #endif

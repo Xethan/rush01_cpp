@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   QtDisplay.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:36:38 by mgouault         ###   ########.fr       */
+/*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
+/*   Updated: 2015/06/28 17:35:58 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Monitor.class.hpp>
+#ifndef QT_HPP
+# define QT_HPP
 
-int main(int ac, char **av)
+# include <QApplication>
+# include <QPushButton>
+
+class QtDisplay
 {
-	try
-	{
-		Monitor monitor;
-		int key;
+private:
+	QApplication const & _app;
 
-		while ((key = getch()) != 27)
-			monitor.display();
-		endwin();
-	}
-	catch (std::exception const & e)
-	{
-		std::cout << e.what() << std::endl;
-		endwin();
-	}
+				QtDisplay(void);
+				QtDisplay(QtDisplay const & src);
+	QtDisplay const &	operator=(QtDisplay const & src);
 
-	return (0);
-}
+public:
+				QtDisplay(int ac, char **av);
+				~QtDisplay(void);
+
+	QApplication const & getApp(void) const;
+
+	void		displayStuff(void);
+};
+
+#endif

@@ -1,6 +1,7 @@
 HEADERS += \
     display/IMonitorDisplay.class.hpp \
     display/Ncurses.class.hpp \
+    display/Qt.class.hpp \
     module/CPUInfo.class.hpp \
     module/CPUUsage.class.hpp \
     module/HostUserNames.class.hpp \
@@ -13,6 +14,7 @@ HEADERS += \
 
 SOURCES += \
     display/Ncurses.class.cpp \
+    display/Qt.class.cpp \
     module/CPUInfo.class.cpp \
     module/CPUUsage.class.cpp \
     module/HostUserNames.class.cpp \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
+/*   Monitor.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 15:41:54 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 17:37:51 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include <CPUUsage.class.hpp>
 #include <NetworkUsage.class.hpp>
 
-			Monitor::Monitor(std::string display_mode) : \
-								_display_mode(display_mode), _ncurses(*(new Ncurses))
+				Monitor::Monitor(std::string display_mode, int ac, char **av) : \
+					_display_mode(display_mode), _ncurses(*(new Ncurses)), _qtdisplay(*(new QtDisplay))
 {
 	this->_hostusernames = new HostUserNames();
 	this->_os_info = new OSInfo();
@@ -31,7 +31,7 @@
 	this->_network_usage = new NetworkUsage();
 }
 
-			Monitor::~Monitor(void)
+				Monitor::~Monitor(void)
 {
 	delete this->_hostusernames;
 	delete this->_os_info;
@@ -42,15 +42,16 @@
 	delete this->_network_usage;
 }
 
-void		Monitor::display(void)
+void			Monitor::display(void)
 {
 	clear();
 	this->displayNcurses();
+	this->displayQt();
 	refresh();
 	usleep(100000);
 }
 
-void		Monitor::displayNcurses(void)
+void			Monitor::displayNcurses(void)
 {
 	if (this->_ncurses.displayUI() == false)
 		return;

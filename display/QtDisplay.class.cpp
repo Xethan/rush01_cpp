@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   QtDisplay.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:36:38 by mgouault         ###   ########.fr       */
+/*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
+/*   Updated: 2015/06/28 17:35:47 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Monitor.class.hpp>
+#include <QtDisplay.class.hpp>
 
-int main(int ac, char **av)
+				QtDisplay::QtDisplay(int ac, char **av) : \
+					_app(*(new QApplication(ac, av))) {}
+
+				QtDisplay::~QtDisplay(void) {}
+
+QApplication const & QtDisplay::getApp(void) const
 {
-	try
-	{
-		Monitor monitor;
-		int key;
+	return this->_app;
+}
 
-		while ((key = getch()) != 27)
-			monitor.display();
-		endwin();
-	}
-	catch (std::exception const & e)
-	{
-		std::cout << e.what() << std::endl;
-		endwin();
-	}
-
-	return (0);
+void			QtDisplay::displayStuff(void)
+{
+	QPushButton bouton("TEST");
+	bouton.show();
 }
