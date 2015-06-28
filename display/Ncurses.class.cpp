@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 12:34:04 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 12:37:31 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 void		Ncurses::displayModule(HostUserNames * module) const
 {
 	mvhline(1, 1, '=', this->_width / 2 - 2);
+	this->displayData(1, " Host / User Info ", "");
 	this->displayData(1, "Hostname : ", module->getHostname());
 	this->displayData(2, "Username : ", module->getUsername());
 }
