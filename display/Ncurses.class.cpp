@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 19:53:16 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 22:21:05 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include <NetworkUsage.class.hpp>
 #include <Monitor.class.hpp>
 
-			Ncurses::Ncurses(void) : _color(1)
+			Ncurses::Ncurses(void) : \
+				_color(1)
 {
 	initscr();
 	noecho();
@@ -32,6 +33,12 @@
 	init_pair(2, COLOR_WHITE, COLOR_RED);
 	init_pair(3, COLOR_WHITE, COLOR_BLUE);
 	init_pair(4, COLOR_BLACK, COLOR_GREEN);
+	this->_display[0] = true;
+	this->_display[1] = true;
+	this->_display[2] = true;
+	this->_display[3] = true;
+	this->_display[4] = true;
+	this->_display[5] = true;
 }
 
 			Ncurses::~Ncurses(void) {}
@@ -49,6 +56,8 @@ bool		Ncurses::loop(Monitor const & src)
 			endwin();
 			return (true);
 		}
+		if (key >= 49 && key <= 54)
+			this->_display[key - 49] = (this->_display[key - 49] == true) ? false : true;
 		clear();
 		this->display(src);
 		//mvprintw(48, 1, "%d", key);
@@ -64,13 +73,20 @@ void		Ncurses::display(Monitor const & src)
 {
 	if (this->displayUI() == false)
 		return;
-	this->displayModule(src.getHostUserNames());
-	this->displayModule(src.getOSInfo());
-	this->displayModule(src.getCPUInfo());
-	this->displayModule(src.getTimeInfo());
-	this->displayModule(src.getRAMInfo());
-	this->displayModule(src.getCPUUsage());
-	this->displayModule(src.getNetworkUsage());
+	if (this->_display[0])
+		this->displayModule(src.getHostUserNames());
+	if (this->_display[1])
+		this->displayModule(src.getOSInfo());
+	if (this->_display[2])
+		this->displayModule(src.getCPUInfo());
+	if (this->_display[3])
+		this->displayModule(src.getTimeInfo());
+	if (this->_display[4])
+		this->displayModule(src.getRAMInfo());
+	if (this->_display[4])
+		this->displayModule(src.getCPUUsage());
+	if (this->_display[5])
+		this->displayModule(src.getNetworkUsage());
 }
 
 void		Ncurses::displayModule(HostUserNames * module)
@@ -83,6 +99,7 @@ void		Ncurses::displayModule(HostUserNames * module)
 
 void		Ncurses::displayModule(OSInfo * module)
 {
+	this->_y = 6;
 	this->displayTitle(1, "OS Info");
 	this->displayData(1, "Sys. name : ", module->getSysname());
 	this->displayData(1, "Node name : ", module->getNodename());
@@ -93,6 +110,7 @@ void		Ncurses::displayModule(OSInfo * module)
 
 void		Ncurses::displayModule(CPUInfo * module)
 {
+	this->_y = 14;
 	this->displayTitle(1, "CPU Info");
 	this->displayData(1, "Model : ", module->getModel());
 	this->displayData(1, "Clock speed : ", module->getClockSpeed());
@@ -109,6 +127,7 @@ void		Ncurses::displayModule(Time * module)
 
 void		Ncurses::displayModule(RAMInfo * module)
 {
+	this->_y = 6;
 	this->displayTitle(3, "Ressources");
 	this->displayData(3, "Max. RAM : ", std::to_string(module->getRamMax()) + " MB");
 	this->displayData(3, "Used RAM : ", std::to_string(module->getRamUsed()) + " MB");
@@ -135,7 +154,12 @@ void		Ncurses::displayModule(CPUUsage * module)
 
 void		Ncurses::displayModule(NetworkUsage * module)
 {
-	(void)module;
+	this->_y = this->_height / 2 - 1;
+	this->displayTitle(2, "Network Usage");
+	this->displayData(2, "Packets in : ", module->getNetworkThroughput(NetworkUsage::pktsIn) + " pkts");
+	this->displayData(2, "Packets out : ", module->getNetworkThroughput(NetworkUsage::pktsOut) + " pkts");
+	this->displayData(2, "Data in : ", module->getNetworkThroughput(NetworkUsage::bytesIn) + " bytes");
+	this->displayData(2, "Data out : ", module->getNetworkThroughput(NetworkUsage::bytesOut) + " bytes");
 }
 
 bool		Ncurses::displayUI(void)
@@ -149,6 +173,7 @@ bool		Ncurses::displayUI(void)
 	}
 	attron(COLOR_PAIR(this->_color));
 	border(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+	mvhline(2, 0, ' ', this->_width);
 	mvhline(this->_height / 2, 0, ' ', this->_width);
 	mvvline(2, this->_width / 2, ' ', this->_height / 2 - 2);
 	mvvline(2, this->_width / 2 - 1, ' ', this->_height / 2 - 2);
@@ -172,10 +197,13 @@ void		Ncurses::displayGraphPercent(std::string msg, int percent)
 void		Ncurses::displayTitle(int quarters, std::string title)
 {
 	int x_pos = this->_width * quarters / 4 - title.size() / 2;
-	int x_pos_box = (quarters < 2) ? 1 : this->_width / 2 + 1;
+	int x_pos_box = (quarters <= 2) ? 1 : this->_width / 2 + 1;
 
 	attron(COLOR_PAIR(this->_color));
-	mvhline(++this->_y, x_pos_box, ' ', this->_width / 2 - 2);
+	if (quarters == 2)
+		mvhline(++this->_y, x_pos_box, ' ', this->_width - 2);
+	else
+		mvhline(++this->_y, x_pos_box, ' ', this->_width / 2 - 2);
 	mvprintw(this->_y, x_pos, "%s", title.c_str());
 	attroff(COLOR_PAIR(this->_color));
 	this->_y += 2;
