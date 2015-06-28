@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 09:41:01 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 10:29:07 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 10:38:45 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 class CPUUsage : public IMonitorModule
 {
 private:
-	unsigned int _nbCore;
 	std::vector<double> _cpuP;
 
 				CPUUsage(CPUUsage const & src);

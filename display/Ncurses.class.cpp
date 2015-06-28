@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 10:32:35 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 11:09:03 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		Ncurses::displayModule(RAMInfo * module)
 	this->print("Free RAM: " + std::to_string(module->getRamFree()));
 
 	std::stringstream ss;
-	ss << "Used RAM: ";
+	ss << "RAM Usage: ";
 	int p1 = module->getRamPercent() / 10;
 	int p2 = p1;
 	ss << "[";
@@ -121,10 +121,21 @@ void		Ncurses::displayModule(CPUUsage * module)
 
 	module->getCpuPercent();
 
-	this->print("T1: " + std::to_string(module->getCpuP()[0]));
-	this->print("T2: " + std::to_string(module->getCpuP()[1]));
-	this->print("T3: " + std::to_string(module->getCpuP()[2]));
-	this->print("T4: " + std::to_string(module->getCpuP()[3]));
+	std::stringstream ss;
+	ss << "CPU Usage: ";
+	int p = static_cast<int>((module->getCpuP()[0] + module->getCpuP()[1] + module->getCpuP()[2] + module->getCpuP()[3]) / 4);
+	int p1 = p / 10;
+	int p2 = p1;
+	ss << "[";
+	while (p1 > 0)
+	{ ss << "=="; --p1; }
+	ss << ">";
+	while (p2 < 10)
+	{ ss << "  "; ++p2; }
+	ss << "] " << p << " %% ";
+
+	this->print(ss.str());
+
 }
 
 void		Ncurses::displayModule(NetworkUsage * module)

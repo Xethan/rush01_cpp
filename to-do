@@ -1,0 +1,9 @@
+-network usage
+Je sais pas, grep top peut marcher, mais dégueulasse
+
+-Qt
+Tout à faire
+
+-ncurses
+Prendre en compte resize (refresh h w)
+Faire jolis titres de catégories (boucle '=') [h - 15 / 2]
