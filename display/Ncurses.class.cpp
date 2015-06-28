@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 14:46:56 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 15:42:28 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 	curs_set(0);
 	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
+	start_color();
+	init_pair(1, COLOR_BLACK, COLOR_WHITE);
 }
 
 			Ncurses::~Ncurses(void)
@@ -35,7 +37,7 @@
 
 void		Ncurses::displayModule(HostUserNames * module)
 {
-	this->_y = 1;
+	this->_y = 3;
 	mvhline(this->_y, 1, '=', this->_width / 2 - 2);
 	this->displayData(1, " Host / User Info ", "");
 	this->_y++;
@@ -67,7 +69,7 @@ void		Ncurses::displayModule(CPUInfo * module)
 
 void		Ncurses::displayModule(Time * module)
 {
-	this->_y = 1;
+	this->_y = 3;
 	mvhline(this->_y, this->_width / 2 + 1, '=', this->_width / 2 - 2);
 	this->displayData(3, " Time Info ", "");
 	this->_y++;
@@ -119,15 +121,20 @@ void		Ncurses::displayModule(NetworkUsage * module)
 	(void)module;
 }
 
-void		Ncurses::displayUI(void)
+bool		Ncurses::displayUI(void)
 {
-	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_WHITE);
-	attron(COLOR_PAIR(1));
 	getmaxyx(stdscr, this->_height, this->_width);
+	if (this->_height < 50 || this->_width < 100)
+	{
+		mvprintw(0, 0, "The Window is too small.");
+		mvprintw(1, 0, "It must be at least 100x50");
+		return (false);
+	}
+	attron(COLOR_PAIR(1));
 	border(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 	mvhline(this->_height / 2, 0, ' ', this->_width);
 	mvvline(1, this->_width / 2, ' ', this->_height / 2);
 	mvvline(1, this->_width / 2 - 1, ' ', this->_height / 2);
 	attroff(COLOR_PAIR(1));
+	return (true);
 }

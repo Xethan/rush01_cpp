@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 13:53:12 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 15:41:32 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ public:
 	void	displayModule(RAMInfo * module);
 	void	displayModule(CPUUsage * module);
 	void	displayModule(NetworkUsage * module);
-	void	displayUI(void);
+	bool	displayUI(void);
 
 	void	displayGraphPercent(std::string msg, int percent);
 
@@ -59,8 +59,7 @@ public:
 		sstream << data;
 		std::string string_data = sstream.str();
 		int x_pos = this->_width * quarters / 4 - ( msg.size() + string_data.size() ) / 2;
-		mvprintw(this->_y, x_pos, "%s%s", msg.c_str(), string_data.c_str());
-		this->_y += 1;
+		mvprintw(this->_y++, x_pos, "%s%s", msg.c_str(), string_data.c_str());
 	}
 
 };
