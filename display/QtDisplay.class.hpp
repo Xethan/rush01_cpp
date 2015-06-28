@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 20:14:57 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 20:53:33 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define QT_HPP
 
 # include <QApplication>
-# include <QPushButton>
+# include <QtWindow.class.hpp>
 
 # include <IMonitorDisplay.class.hpp>
 

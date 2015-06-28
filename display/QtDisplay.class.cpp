@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 20:29:34 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 22:10:55 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int				QtDisplay::display(Monitor const & src)
 {
 	(void)src;
 	QApplication app(this->_ac, this->_av);
-	QPushButton bouton("Passer en mode texte");
-	bouton.setCursor(Qt::PointingHandCursor);
-    bouton.show();
+	QtWindow window;
+	window.displayModule(src.getHostUserNames());
+	window.displayModule(src.getRAMInfo());
+	window.show();
 	return app.exec();
 }

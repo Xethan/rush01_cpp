@@ -8,6 +8,7 @@ LFLAGS		=	-F $(HOME)/Qt/5.4/clang_64/lib -framework QtCore -framework QtGui -fra
 SRC			=	module/RAMInfo.class.cpp module/CPUInfo.class.cpp module/Time.class.cpp \
 				module/HostUserNames.class.cpp module/OSInfo.class.cpp \
 				module/CPUUsage.class.cpp module/NetworkUsage.class.cpp \
+				display/QtWindow.class.cpp \
 				display/Ncurses.class.cpp display/QtDisplay.class.cpp Monitor.class.cpp main.cpp
 HEADER		=	-I ./ -I ./display/ -I ./module/
 NAME		=	ft_gkrellm
