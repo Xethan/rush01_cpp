@@ -1,34 +1,22 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/06/24 19:38:05 by ncolliau          #+#    #+#              #
-#    Updated: 2015/06/28 09:54:45 by mgouault         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-SRC =	module/RAMInfo.class.cpp module/CPUInfo.class.cpp module/Time.class.cpp \
-		module/HostUserNames.class.cpp module/OSInfo.class.cpp \
-		module/CPUUsage.class.cpp module/NetworkUsage.class.cpp \
-		display/Ncurses.class.cpp Monitor.class.cpp main.cpp
-
-HEADER = -I ./ -I ./display/ -I ./module/
-
-NAME = ft_gkrellm
-
-CC = clang++
-
-FLAGS = -Wall -Wextra -Werror
-
-LIB = -lncurses
+QTINCLUDES	=	-I $(HOME)/Qt5.4.2/5.4/clang_64/include \
+				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtCore \
+				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtGui \
+				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtWidgets
+LFLAGS		=	-F $(HOME)/Qt5.4.2/5.4/clang_64/lib -framework QtCore -framework QtGui -framework QtWidgets -lncurses
+SRC			=	module/RAMInfo.class.cpp module/CPUInfo.class.cpp module/Time.class.cpp \
+				module/HostUserNames.class.cpp module/OSInfo.class.cpp \
+				module/CPUUsage.class.cpp module/NetworkUsage.class.cpp \
+				display/Ncurses.class.cpp Monitor.class.cpp main.cpp
+HEADER		=	-I ./ -I ./display/ -I ./module/
+NAME		=	ft_gkrellm
+CC			=	clang++
+CFLAGS		=	-Wall -Wextra -Werror
+LIB			=	-lncurses
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-		$(CC) $(FLAGS) -o $(NAME) $(SRC) $(HEADER) $(LIB)
+		$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(SRC) $(HEADER) $(QTINCLUDES) $(LIB)
 
 clean:
 		@rm -f $(NAME)
