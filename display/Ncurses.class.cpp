@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 19:24:05 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 19:53:16 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@
 	init_pair(4, COLOR_BLACK, COLOR_GREEN);
 }
 
-			Ncurses::~Ncurses(void)
-{
-	endwin();
-}
+			Ncurses::~Ncurses(void) {}
 
 bool		Ncurses::loop(Monitor const & src)
 {
@@ -47,12 +44,14 @@ bool		Ncurses::loop(Monitor const & src)
 	{
 		if (key == 10)
 			this->change_color();
-		//if (key == qt)
-		// endwin;
-		// return (true);
+		if (key == 32)
+		{
+			endwin();
+			return (true);
+		}
 		clear();
 		this->display(src);
-		// mvprintw(48, 1, "%d", key);
+		//mvprintw(48, 1, "%d", key);
 		refresh();
 		sleep(1);
 	}
@@ -67,8 +66,8 @@ void		Ncurses::display(Monitor const & src)
 		return;
 	this->displayModule(src.getHostUserNames());
 	this->displayModule(src.getOSInfo());
-	this->displayModule(src.getTimeInfo());
 	this->displayModule(src.getCPUInfo());
+	this->displayModule(src.getTimeInfo());
 	this->displayModule(src.getRAMInfo());
 	this->displayModule(src.getCPUUsage());
 	this->displayModule(src.getNetworkUsage());

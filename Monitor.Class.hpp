@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.class.hpp                                  :+:      :+:    :+:   */
+/*   Monitor.Class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 19:16:40 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 20:16:32 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ class QtDisplay;
 class Monitor
 {
 private:
+
+	int _ac;
+	char **_av;
+
 	Ncurses * 	_ncurses;
 	QtDisplay *	_qtdisplay;
 
@@ -40,11 +44,12 @@ private:
 	CPUUsage *	_cpu_usage;
 	NetworkUsage * _network_usage;
 
+				Monitor(void);
 				Monitor(Monitor const &copy);
 	Monitor const & operator=(Monitor const &rhs);
 
 public:
-				Monitor(void);
+				Monitor(int ac, char **av);
 				~Monitor(void);
 
 	void		programLoop(void);

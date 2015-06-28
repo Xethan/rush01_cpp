@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   QtDisplay.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 19:11:49 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 20:14:57 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ class Monitor;
 class QtDisplay : public IMonitorDisplay
 {
 private:
-	QApplication const & _app;
+
+	int _ac;
+	char **_av;
 
 				QtDisplay(void);
 				QtDisplay(QtDisplay const & src);
@@ -33,10 +35,9 @@ public:
 				QtDisplay(int ac, char **av);
 				~QtDisplay(void);
 
-	QApplication const & getApp(void) const;
 
 	bool		loop(Monitor const & src);
-	void		display(Monitor const & src);
+	int			display(Monitor const & src);
 };
 
 #endif

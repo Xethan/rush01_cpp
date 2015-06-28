@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   QtDisplay.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 16:10:52 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 19:12:00 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 20:29:34 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <QtDisplay.class.hpp>
 #include <Monitor.class.hpp>
 
-				QtDisplay::QtDisplay(int ac, char **av) : \
-					_app(*(new QApplication(ac, av))) {}
+				QtDisplay::QtDisplay(int ac, char **av) : _ac(ac), _av(av) {}
 
 				QtDisplay::~QtDisplay(void) {}
 
-QApplication const & QtDisplay::getApp(void) const
-{
-	return this->_app;
-}
-
 bool			QtDisplay::loop(Monitor const & src)
 {
-	(void)src;
-	return true;
+	std::cout << this->display(src) << std::endl;
+	return false;
 }
 
-void			QtDisplay::display(Monitor const & src)
+int				QtDisplay::display(Monitor const & src)
 {
 	(void)src;
+	QApplication app(this->_ac, this->_av);
+	QPushButton bouton("Passer en mode texte");
+	bouton.setCursor(Qt::PointingHandCursor);
+    bouton.show();
+	return app.exec();
 }
