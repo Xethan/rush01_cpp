@@ -1,0 +1,12 @@
+-cpu activity
+moderfuker
+
+-network
+sysctl ??
+
+-Qt
+all
+
+-ncurses
+resize (refresh h w)
+for (;;) '=' (h - 15 / 2)
