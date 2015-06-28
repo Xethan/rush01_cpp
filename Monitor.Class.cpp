@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.class.cpp                                  :+:      :+:    :+:   */
+/*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 10:22:44 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 13:32:34 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		Monitor::display(void)
 	clear();
 	this->displayNcurses();
 	refresh();
-	sleep(1);
+	usleep(100000);
 }
 
 void		Monitor::displayNcurses(void)

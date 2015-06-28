@@ -1,8 +1,8 @@
-QTINCLUDES	=	-I $(HOME)/Qt5.4.2/5.4/clang_64/include \
-				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtCore \
-				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtGui \
-				-I $(HOME)/Qt5.4.2/5.4/clang_64/include/QtWidgets
-LFLAGS		=	-F $(HOME)/Qt5.4.2/5.4/clang_64/lib -framework QtCore -framework QtGui -framework QtWidgets -lncurses
+QTINCLUDES	=	-I $(HOME)/Qt/5.4/clang_64/include \
+				-I $(HOME)/Qt/5.4/clang_64/include/QtCore \
+				-I $(HOME)/Qt/5.4/clang_64/include/QtGui \
+				-I $(HOME)/Qt/5.4/clang_64/include/QtWidgets
+LFLAGS		=	-F $(HOME)/Qt/5.4/clang_64/lib -framework QtCore -framework QtGui -framework QtWidgets -lncurses
 SRC			=	module/RAMInfo.class.cpp module/CPUInfo.class.cpp module/Time.class.cpp \
 				module/HostUserNames.class.cpp module/OSInfo.class.cpp \
 				module/CPUUsage.class.cpp module/NetworkUsage.class.cpp \
