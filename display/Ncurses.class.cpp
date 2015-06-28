@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 12:38:17 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 15:42:28 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 	curs_set(0);
 	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
+	start_color();
+	init_pair(1, COLOR_BLACK, COLOR_WHITE);
 }
 
 			Ncurses::~Ncurses(void)
@@ -33,103 +35,106 @@
 	endwin();
 }
 
-void		Ncurses::displayModule(HostUserNames * module) const
+void		Ncurses::displayModule(HostUserNames * module)
 {
-	mvhline(1, 1, '=', this->_width / 2 - 2);
+	this->_y = 3;
+	mvhline(this->_y, 1, '=', this->_width / 2 - 2);
 	this->displayData(1, " Host / User Info ", "");
+	this->_y++;
 	this->displayData(1, "Hostname : ", module->getHostname());
-	this->displayData(2, "Username : ", module->getUsername());
+	this->displayData(1, "Username : ", module->getUsername());
 }
 
-void		Ncurses::displayModule(OSInfo * module) const
+void		Ncurses::displayModule(OSInfo * module)
 {
-	mvhline(4, 1, '=', this->_width / 2 - 2);
-	this->displayData(4, " OS Info ", "");
-	this->displayData(6, "Sys. name : ", module->getSysname());
-	this->displayData(7, "Node name : ", module->getNodename());
-	this->displayData(8, "Sys. release : ", module->getRelease());
-	this->displayData(9, "Sys. version : ", module->getVersion());
-	this->displayData(10, "Identifier : ", module->getMachine());
+	mvhline(++this->_y, 1, '=', this->_width / 2 - 2);
+	this->displayData(1, " OS Info ", "");
+	this->_y++;
+	this->displayData(1, "Sys. name : ", module->getSysname());
+	this->displayData(1, "Node name : ", module->getNodename());
+	this->displayData(1, "Sys. release : ", module->getRelease());
+	this->displayData(1, "Sys. version : ", module->getVersion());
+	this->displayData(1, "Identifier : ", module->getMachine());
 }
 
-void		Ncurses::displayModule(CPUInfo * module) const
+void		Ncurses::displayModule(CPUInfo * module)
 {
-	mvhline(12, 1, '=', this->_width / 2 - 2);
-	this->displayData(12, " CPU Info ", "");
-	this->displayData(14, "Model : ", module->getModel());
-	this->displayData(15, "Clock speed : ", module->getClockSpeed());
-	this->displayData(16, "Nb cores : ", module->getNbCores());
+	mvhline(++this->_y, 1, '=', this->_width / 2 - 2);
+	this->displayData(1, " CPU Info ", "");
+	this->_y++;
+	this->displayData(1, "Model : ", module->getModel());
+	this->displayData(1, "Clock speed : ", module->getClockSpeed());
+	this->displayData(1, "Nb cores : ", module->getNbCores());
 }
 
-void		Ncurses::displayModule(Time * module) const
+void		Ncurses::displayModule(Time * module)
 {
-	this->displayData(this->_height / 2 + 1, "Date : ", module->getDate());
-	this->displayData(this->_height / 2 + 1, "Time : ", module->getTime());
+	this->_y = 3;
+	mvhline(this->_y, this->_width / 2 + 1, '=', this->_width / 2 - 2);
+	this->displayData(3, " Time Info ", "");
+	this->_y++;
+	this->displayData(3, "Date : ", module->getDate());
+	this->displayData(3, "Time : ", module->getTime());
 }
 
-void		Ncurses::displayModule(RAMInfo * module) const
+void		Ncurses::displayModule(RAMInfo * module)
 {
-	mvprintw(this->_height / 2 + 5, 1, "======= Ressources ======");
-	mvprintw(this->_height / 2 + 6, 1, "Max. RAM : %lld", module->getRamMax());
-	mvprintw(this->_height / 2 + 7, 1, "Used RAM : %lld", module->getRamUsed());
-	mvprintw(this->_height / 2 + 8, 1, "Free RAM : %lld", module->getRamFree());
+	mvhline(++this->_y, this->_width / 2 + 1, '=', this->_width / 2 - 2);
+	this->displayData(3, " Ressources ", "");
+	this->_y++;
+	this->displayData(3, "Max. RAM : ", std::to_string(module->getRamMax()) + " MB");
+	this->displayData(3, "Used RAM : ", std::to_string(module->getRamUsed()) + " MB");
+	this->displayData(3, "Free RAM : ", std::to_string(module->getRamFree()) + " MB");
 
-	// std::stringstream ss;
-	// ss << "RAM Usage: ";
-	// int p1 = module->getRamPercent() / 10;
-	// int p2 = p1;
-	// ss << "[";
-	// while (p1 > 0)
-	// { ss << "=="; --p1; }
-	// ss << ">";
-	// while (p2 < 10)
-	// { ss << "  "; ++p2; }
-	// ss << "] " << module->getRamPercent() << " %% " \
-	// 	<< "(" << module->getRamUsed() << " MB / " << module->getRamMax() << " MB)";
-
-	// this->print(ss.str());
+	this->_y++;
+	this->displayGraphPercent(" RAM Usage : ", module->getRamPercent());
 }
 
-void		Ncurses::displayModule(CPUUsage * module) const
+void		Ncurses::displayModule(CPUUsage * module)
 {
-	(void)module;
-	// move(this->_h / 2 + 9, this->_w / 4 + 3);
-	// this->_y = this->_h / 2 + 9;
-	// this->_x = this->_w / 4 + 3;
+	module->getCpuPercent();
 
-	// module->getCpuPercent();
-
-	// std::stringstream ss;
-	// ss << "CPU Usage: ";
-	// int p = static_cast<int>((module->getCpuP()[0] + module->getCpuP()[1] + module->getCpuP()[2] + module->getCpuP()[3]) / 4);
-	// int p1 = p / 10;
-	// int p2 = p1;
-	// ss << "[";
-	// while (p1 > 0)
-	// { ss << "=="; --p1; }
-	// ss << ">";
-	// while (p2 < 10)
-	// { ss << "  "; ++p2; }
-	// ss << "] " << p << " %% ";
-
-	// this->print(ss.str());
+	this->_y += 2;
+	for (size_t i = 0; i < module->getCpuP().size(); i++)
+	{
+		int percent = static_cast<int>(module->getCpuP()[i]);
+		this->displayGraphPercent("CPU Core " + std::to_string(i + 1) + " : ", percent);
+	}
+	int percent = static_cast<int>((module->getCpuP()[0] + module->getCpuP()[1] + module->getCpuP()[2] + module->getCpuP()[3]) / 4);
+	this->displayGraphPercent(" CPU Usage : ", percent);
 
 }
 
-void		Ncurses::displayModule(NetworkUsage * module) const
+void		Ncurses::displayGraphPercent(std::string msg, int percent)
+{
+	std::string usage(percent / 5, '=');
+	usage.insert(0, "[");
+	usage += std::string(20 - percent / 5, ' ') + "]";
+	if (percent < 10)
+		usage.push_back(' ');
+	usage += " " + std::to_string(percent) + "%";
+	this->displayData(3, msg, usage);
+}
+
+void		Ncurses::displayModule(NetworkUsage * module)
 {
 	(void)module;
 }
 
-void		Ncurses::displayUI(void)
+bool		Ncurses::displayUI(void)
 {
-	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_WHITE);
-	attron(COLOR_PAIR(1));
 	getmaxyx(stdscr, this->_height, this->_width);
+	if (this->_height < 50 || this->_width < 100)
+	{
+		mvprintw(0, 0, "The Window is too small.");
+		mvprintw(1, 0, "It must be at least 100x50");
+		return (false);
+	}
+	attron(COLOR_PAIR(1));
 	border(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 	mvhline(this->_height / 2, 0, ' ', this->_width);
 	mvvline(1, this->_width / 2, ' ', this->_height / 2);
 	mvvline(1, this->_width / 2 - 1, ' ', this->_height / 2);
 	attroff(COLOR_PAIR(1));
+	return (true);
 }
