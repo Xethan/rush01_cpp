@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.class.hpp                                  :+:      :+:    :+:   */
+/*   Monitor.Class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 20:13:31 by mgouault          #+#    #+#             */
-/*   Updated: 2015/06/28 17:37:42 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 17:39:46 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ private:
 public:
 				Monitor(std::string display_mode);
 				~Monitor(void);
-	void		display(void);
+	void		ProgramLoop(void);
 	void		displayNcurses(void);
 	void		displayQt(void);
 };

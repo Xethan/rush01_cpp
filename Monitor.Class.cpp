@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Monitor.class.cpp                                  :+:      :+:    :+:   */
+/*   Monitor.Class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 17:37:51 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 17:39:47 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,21 @@
 	delete this->_network_usage;
 }
 
-void			Monitor::display(void)
+void		Monitor::ProgramLoop(void)
 {
-	clear();
-	this->displayNcurses();
-	this->displayQt();
-	refresh();
-	usleep(100000);
+	int key;
+
+	while ( ( key = getch() ) != 27 )
+	{
+		if (key == 10) { this->_ncurses.change_color(); }
+		clear();
+		// this->displayNcurses();
+		// this->displayQt();
+		// mvprintw(48, 1, "%d", key);
+		refresh();
+		usleep(100000);
+	}
+	endwin();
 }
 
 void			Monitor::displayNcurses(void)
