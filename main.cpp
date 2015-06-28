@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:15:15 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 15:48:04 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 16:23:20 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ int		main(void)
 	try
 	{
 		Monitor monitor;
-		int key;
-
-		while ( ( key = getch() ) != 27 )
-			monitor.display();
-		endwin();
+		monitor.ProgramLoop();
 	}
 	catch(std::exception const &e)
 	{

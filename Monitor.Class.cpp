@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:08:03 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 15:41:54 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 16:32:50 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,20 @@
 	delete this->_network_usage;
 }
 
-void		Monitor::display(void)
+void		Monitor::ProgramLoop(void)
 {
-	clear();
-	this->displayNcurses();
-	refresh();
-	usleep(100000);
+	int key;
+
+	while ( ( key = getch() ) != 27 )
+	{
+		if (key == 10) { this->_ncurses.change_color(); }
+		clear();
+		this->displayNcurses();
+		//mvprintw(48, 1, "%d", key);
+		refresh();
+		usleep(100000);
+	}
+	endwin();
 }
 
 void		Monitor::displayNcurses(void)

@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 15:41:32 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/06/28 17:13:54 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ private:
 	int		_height;
 	int		_width;
 	int		_y;
+	int		_color;
 
 			Ncurses(Ncurses const &copy);
 	Ncurses const & operator=(Ncurses const &rhs);
@@ -51,15 +52,18 @@ public:
 	bool	displayUI(void);
 
 	void	displayGraphPercent(std::string msg, int percent);
+	void	displayTitle(int quarters, std::string title);
+	void	change_color(void);
 
 	template<typename T>
 	void	displayData(int quarters, std::string msg, T data)
 	{
+		int x_pos;
 		std::stringstream sstream;
 		sstream << data;
 		std::string string_data = sstream.str();
-		int x_pos = this->_width * quarters / 4 - ( msg.size() + string_data.size() ) / 2;
-		mvprintw(this->_y++, x_pos, "%s%s", msg.c_str(), string_data.c_str());
+		x_pos = this->_width * quarters / 4 - 20;
+		mvprintw(this->_y++, x_pos, "%-15s%s", msg.c_str(), string_data.c_str());
 	}
 
 };
