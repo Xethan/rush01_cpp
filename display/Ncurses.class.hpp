@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:22 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 10:24:38 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 12:22:25 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ class NetworkUsage;
 class Ncurses : public IMonitorDisplay
 {
 private:
-	int		_h;
-	int		_w;
-	int		_y;
-	int		_x;
+	int		_height;
+	int		_width;
+	//int		_y;
 
 			Ncurses(Ncurses const &copy);
 	Ncurses const & operator=(Ncurses const &rhs);
@@ -42,16 +41,25 @@ public:
 			Ncurses(void);
 			~Ncurses(void);
 
-	void	displayModule(HostUserNames * module);
-	void	displayModule(OSInfo * module);
-	void	displayModule(CPUInfo * module);
-	void	displayModule(Time * module);
-	void	displayModule(RAMInfo * module);
-	void	displayModule(CPUUsage * module);
-	void	displayModule(NetworkUsage * module);
+	void	displayModule(HostUserNames * module) const;
+	void	displayModule(OSInfo * module) const;
+	void	displayModule(CPUInfo * module) const;
+	void	displayModule(Time * module) const;
+	void	displayModule(RAMInfo * module) const;
+	void	displayModule(CPUUsage * module) const;
+	void	displayModule(NetworkUsage * module) const;
 	void	displayUI(void);
 
-	void	print(std::string str);
+	template<typename T>
+	void	displayData(int y_pos, std::string msg, T data) const
+	{
+		std::stringstream sstream;
+		sstream << data;
+		std::string string_data = sstream.str();
+		int x_pos = this->_width / 4 - ( msg.size() + string_data.size() ) / 2;
+		mvprintw(y_pos, x_pos, "%s%s", msg.c_str(), string_data.c_str());
+	}
+
 };
 
 #endif
