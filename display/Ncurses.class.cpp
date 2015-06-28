@@ -6,7 +6,7 @@
 /*   By: mgouault <mgouault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/27 12:51:24 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/06/28 11:09:03 by mgouault         ###   ########.fr       */
+/*   Updated: 2015/06/28 11:15:29 by mgouault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ void		Ncurses::displayModule(RAMInfo * module)
 
 void		Ncurses::displayModule(CPUUsage * module)
 {
-	move(this->_h / 2 + 10, this->_w / 4 + 3);
-	this->_y = this->_h / 2 + 10;
+	move(this->_h / 2 + 9, this->_w / 4 + 3);
+	this->_y = this->_h / 2 + 9;
 	this->_x = this->_w / 4 + 3;
 
 	module->getCpuPercent();
